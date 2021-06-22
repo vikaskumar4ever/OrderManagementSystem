@@ -1,0 +1,17 @@
+{
+  "posts": [
+    {
+      "id": 3,
+      "orderNo": "OR02206001",
+      "orderDueDate": "2021-06-25",
+      "customerName": "Josh Buttler",
+      "email": "js.buttler@hotmail.com",
+      "mobileNo": "91XXXXXXXX",
+      "address": "Andheri, Mumbai"
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}

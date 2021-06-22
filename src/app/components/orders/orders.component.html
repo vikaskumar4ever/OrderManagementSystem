@@ -1,0 +1,81 @@
+<nav class="navbar navbar-light bg-primary">
+    <div class="container-fluid">
+        <h3 style="color: white;">Order Management System</h3>
+        <div class="d-flex">
+            <button (click)="clickAddOrder()" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">New Order</button>
+        </div>
+    </div>
+</nav>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th scope="col">Order Id</th>
+            <th scope="col">Order No</th>
+            <th scope="col">Order Due Date</th>
+            <th scope="col">Customer Name</th>
+            <th scope="col">Email Id</th>
+            <th scope="col">Mobile No</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of ordersList">
+            <td>{{item.id}}</td>
+            <td>{{item.orderNo}}</td>
+            <td>{{item.orderDueDate}}</td>
+            <td>{{item.customerName}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.mobileNo}}</td>
+            <td>
+                <button (click)="editRecord(item)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info">Edit</button>
+                <button (click)="deleteRecord(item)" class="btn btn-danger mx-3">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Order Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formValue">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Order No</label>
+                        <input formControlName="orderNo" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Order Due Date</label>
+                        <input type="date" formControlName="orderDueDate" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Customer Name</label>
+                        <input formControlName="customerName" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Customer EmailId</label>
+                        <input formControlName="email" class="form-control" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~.-]+@[a-z0-9-]+(\.[a-z0-9-]+)*" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Customer Mobile No</label>
+                        <input formControlName="mobileNo" minlength="10" maxlength="10" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Address</label>
+                        <textarea formControlName="address" class="form-control" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" *ngIf="showAdd" (click)="saveOrderDetails()" class="btn btn-primary">Add</button>
+                <button type="button" *ngIf="showUpdate" (click)="updateOrderDetails()" class="btn btn-primary">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
